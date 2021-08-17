@@ -115,6 +115,10 @@ class Ui_MainWindow(object):
         self.lb_R_Num.setGeometry(QRect(30, 170, 81, 21))
         self.lb_R_Num.setFont(font)
         self.lb_R_Num.setAlignment(Qt.AlignRight | Qt.AlignTrailing | Qt.AlignVCenter)
+        self.bt_clean = QPushButton(self.centralwidget)
+        self.bt_clean.setObjectName(u"bt_clean")
+        self.bt_clean.setGeometry(QRect(310, 170, 61, 20))
+        self.bt_clean.clicked.connect(self.onClick_bt_clean)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
@@ -148,6 +152,7 @@ class Ui_MainWindow(object):
         self.lb_R_Num.setText(QCoreApplication.translate("MainWindow", u"0", None))
         self.ledit_LocalIP.setText(QCoreApplication.translate("MainWindow", u"127.0.0.1", None))
         self.lb_LocalIP.setText(QCoreApplication.translate("MainWindow", u"Local IP:", None))
+        self.bt_clean.setText(QCoreApplication.translate("MainWindow", u"clean", None))
 
     # retranslateUi
 
@@ -228,6 +233,12 @@ class Ui_MainWindow(object):
             except Exception as e:
                 print(e)
 
+    def onClick_bt_clean(self):
+        self.lb_R_Num.setText("0")
+        self.lb_T_Num.setText("0")
+        self.num_received_bytes = 0
+        self.num_sent_bytes = 0
+
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
@@ -237,5 +248,3 @@ if __name__ == '__main__':
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
